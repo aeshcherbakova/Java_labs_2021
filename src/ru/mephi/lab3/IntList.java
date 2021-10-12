@@ -1,7 +1,4 @@
 package ru.mephi.lab3;
-import ru.mephi.lab1.MyList;
-
-import java.lang.Exception.*;
 
 // реализация динамического массива целых чисел + функция слияния списков
 public class IntList {
@@ -111,13 +108,13 @@ public class IntList {
 
     public IntList merge(IntList other) {
         if(other == null || other.size() == 0) return this;
-        int sumSize = this.size + other.size();
-        IntList newList = new IntList(sumSize);
+        int otherSize = other.size();
+        IntList newList = new IntList(size + otherSize);
         int i = 0, j = 0;
         do {
             int nextThis = this.array[i];
-            int nextOther = other.get(i);
-            if(nextThis < nextOther) {
+            int nextOther = other.get(j);
+            if (nextThis < nextOther) {
                 newList.add(nextThis);
                 i++;
             }
@@ -125,10 +122,10 @@ public class IntList {
                 newList.add(nextOther);
                 j++;
             }
-        } while(i < size && j < other.size());
+        } while(i < size && j < otherSize);
 
         for(; i < size; i++) newList.add(array[i]);
-        for(; j < size; j++) newList.add(other.get(i));
+        for(; j < otherSize; j++) newList.add(other.get(j));
         return newList;
     }
 
