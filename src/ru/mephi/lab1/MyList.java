@@ -15,7 +15,8 @@ public class MyList {
 
     // пустой конструктор с заданным размером
     public MyList(int size) {
-        array = new Object[(int) (size * resizeFactor)];
+        if(size <= 0) this.size = 10;
+        array = new Object[(int) (this.size * resizeFactor)];
     }
 
     // копирующий конструктор
