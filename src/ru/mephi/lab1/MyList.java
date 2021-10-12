@@ -4,117 +4,153 @@ package ru.mephi.lab1;
 public class MyList {
 
     private Object[] array;
-    private int size = 0;
-    private static double resizeFactor = 1.2;
+    private int size = 0;  // actual size of the list; capacity (allocated size) = array.length
+    private static final double resizeFactor = 1.2;
 
 
     // пустой конструктор
     public MyList() {
-        array = new Object[10];
+        this.array = new Object[10];
     }
 
     // пустой конструктор с заданным размером
     public MyList(int size) {
-        if(size <= 0) this.size = 10;
-        array = new Object[(int) (this.size * resizeFactor)];
+        if(size < 0) {
+            size = 10;
+        }
+        this.array = new Object[size];
     }
 
     // копирующий конструктор
     public MyList(Object[] arr) {
-        if (arr == null)
-            array = new Object[10];
+        if (arr == null) {
+            this.array = new Object[10];
+        }
         else {
-            size = arr.length;
-            this.array = new Object[(int) (size * resizeFactor)];
-            System.arraycopy(arr, 0, this.array, 0, size);
+            this.size = arr.length;
+            this.array = new Object[(int) (this.size * resizeFactor)];
+            System.arraycopy(arr, 0, this.array, 0, this.size);
         }
     }
 
     private void checkResize() {
-        if (size == array.length)
+        if (this.size == this.array.length) {
             resize();
+        }
     }
 
     // увеличение размера массива, если весь занят
     private void resize() {
-        int newSize = (size < 5) ? 5 : (int) (array.length * resizeFactor);
+        int newSize = (this.size < 5) ? 5 : (int) (this.array.length * resizeFactor);
         Object[] newArr = new Object[newSize];
-        System.arraycopy(array, 0, newArr, 0, size);
+        System.arraycopy(this.array, 0, newArr, 0, this.size);
         this.array = newArr;
     }
 
     public void add(Object value) {
-        if (value == null) return;
+        if (value == null) {
+            return;
+        }
         checkResize();
-        array[size++] = value;
+        this.array[this.size++] = value;
     }
 
     // вставляет элемент на данную позицию
     public void add(Object value, int index) {
-        if (value == null) return;
-        checkResize();
-        if (index < 0) index = 0;
-        else if (index > size) index = size;
-        for (int i = size++; i > index; i--)
-            array[i] = array[i - 1];
-        array[index] = value;
+        if (value != null) {
+            checkResize();
+            if (index < 0) {
+                index = 0;
+            }
+            else if (index > this.size) {
+                index = this.size;
+            }
+            for (int i = this.size++; i > index; i--)
+                this.array[i] = this.array[i - 1];
+            this.array[index] = value;
+        }
     }
 
     public Object remove(int index) {
-        if (index < 0 || index >= size) return null;
-        Object copy = array[index];
-        size--;
-        for (int i = index; i < size; i++)
-            array[i] = array[i + 1];
+        if (index < 0 || index >= this.size) {
+            return null;
+        }
+        Object copy = this.array[index];
+        this.size--;
+        for(int i = index; i < this.size; i++) {
+            this.array[i] = this.array[i + 1];
+        }
         return copy;
     }
 
     public Object get(int index) {
-        if (index < 0 || index >= size) return null;
-        return array[index];
+        if (index < 0 || index >= this.size) {
+            return null;
+        }
+        return this.array[index];
     }
 
     // возвращает -1, если элемент не найден
     public int indexOf(Object value) {
-        if (value == null) return -1;
-        for (int i = 0; i < size; i++)
-            if (array[i] == value) return i;
+        if (value == null) {
+            return -1;
+        }
+        for (int i = 0; i < this.size; i++) {
+            if (this.array[i] == value) {
+                return i;
+            }
+        }
         return -1;
     }
 
     public boolean contains(Object value) {
-        if (value == null) return false;
-        for (Object o : array)
-            if (o == value) return true;
+        if (value == null) {
+            return false;
+        }
+        for (Object o : this.array) {
+            if (o == value) {
+                return true;
+            }
+        }
         return false;
     }
 
     // вставляет элемент вместо другого и возвращает старый элемент, который был по этому индексу
     public Object set(Object value, int index) {
-        if (index < 0 || index >= size || value == null) return null;
-        Object copy = array[index];
-        array[index] = value;
+        if (index < 0 || index >= this.size || value == null) {
+            return null;
+        }
+        Object copy = this.array[index];
+        this.array[index] = value;
         return copy;
     }
 
     public int size() {
-        return size;
+        return this.size;
     }
 
     public boolean isEmpty() {
-        return (size == 0);
+        return this.size == 0;
     }
 
     // переопределяю equals для удобства тестирования
     @Override
     public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
         MyList objList = (MyList) obj;
-        if (size != objList.size()) return false;
-        for (int i = 0; i < size; i++)
-            if (!array[i].equals(objList.get(i))) return false;
+        if (this.size != objList.size()) {
+            return false;
+        }
+        for (int i = 0; i < this.size; i++) {
+            if (!this.array[i].equals(objList.get(i))) {
+                return false;
+            }
+        }
         return true;
     }
 

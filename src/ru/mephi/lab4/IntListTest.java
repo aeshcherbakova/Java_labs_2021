@@ -1,4 +1,4 @@
-package ru.mephi.lab3;
+package ru.mephi.lab4;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

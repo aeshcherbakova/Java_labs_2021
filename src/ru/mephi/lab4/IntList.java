@@ -1,4 +1,4 @@
-package ru.mephi.lab3;
+package ru.mephi.lab4;
 
 // реализация динамического массива целых чисел + функция слияния списков
 public class IntList {
@@ -15,14 +15,17 @@ public class IntList {
 
     // пустой конструктор с заданным размером
     public IntList(int size) {
-        if(size <= 0) throw new IllegalArgumentException("size of the list must be positive");
+        if(size <= 0) {
+            throw new IllegalArgumentException("size of the list must be positive");
+        }
         array = new int[(int) (size * resizeFactor)];
     }
 
     // копирующий конструктор
     public IntList(int[] arr) {
-        if (arr == null)
+        if (arr == null) {
             throw new IllegalArgumentException("Array as the argument must not be null");
+        }
         else {
             size = arr.length;
             this.array = new int[(int) (size * resizeFactor)];
@@ -31,8 +34,9 @@ public class IntList {
     }
 
     private void checkResize() {
-        if (size == array.length)
+        if (size == array.length) {
             resize();
+        }
     }
 
     // увеличение размера массива, если весь занят
@@ -52,10 +56,15 @@ public class IntList {
     public void add(int value, int index) {
         isIndexInRange(index);
         checkResize();
-        if (index < 0) index = 0;
-        else if (index > size) index = size;
-        for (int i = size++; i > index; i--)
+        if (index < 0) {
+            index = 0;
+        }
+        else if (index > size) {
+            index = size;
+        }
+        for (int i = size++; i > index; i--) {
             array[i] = array[i - 1];
+        }
         array[index] = value;
     }
 
@@ -63,8 +72,9 @@ public class IntList {
         isIndexInRange(index);
         int copy = array[index];
         size--;
-        for (int i = index; i < size; i++)
+        for (int i = index; i < size; i++) {
             array[i] = array[i + 1];
+        }
         return copy;
     }
 
@@ -74,14 +84,20 @@ public class IntList {
     }
 
     public int indexOf(int value) {
-        for (int i = 0; i < size; i++)
-            if (array[i] == value) return i;
+        for (int i = 0; i < size; i++) {
+            if (array[i] == value) {
+                return i;
+            }
+        }
         return -1;
     }
 
     public boolean contains(int value) {
-        for (int o : array)
-            if (o == value) return true;
+        for (int o : array) {
+            if (o == value) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -102,12 +118,19 @@ public class IntList {
     }
 
     private void isIndexInRange(int index) {
-        if (index < 0) throw new IndexOutOfBoundsException("Index must be positive");
-        if (index >= size) throw new IndexOutOfBoundsException("Index must be less then list size");
+        if (index < 0) {
+            throw new IndexOutOfBoundsException("Index must be positive");
+        }
+        if (index >= size) {
+            throw new IndexOutOfBoundsException("Index must be less then list size");
+        }
     }
 
+    // слияние отсортированных списков
     public IntList merge(IntList other) {
-        if(other == null || other.size() == 0) return this;
+        if(other == null || other.size() == 0) {
+            return this;
+        }
         int otherSize = other.size();
         IntList newList = new IntList(size + otherSize);
         int i = 0, j = 0;
@@ -124,20 +147,33 @@ public class IntList {
             }
         } while(i < size && j < otherSize);
 
-        for(; i < size; i++) newList.add(array[i]);
-        for(; j < otherSize; j++) newList.add(other.get(j));
+        for(; i < size; i++) {
+            newList.add(array[i]);
+        }
+        for(; j < otherSize; j++) {
+            newList.add(other.get(j));
+        }
         return newList;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
+        if (obj == this) {
+            return true;
+        }
+        if (obj == null || obj.getClass() != this.getClass()) {
+            return false;
+        }
 
         IntList objList = (IntList) obj;
-        if (size != objList.size()) return false;
-        for (int i = 0; i < size; i++)
-            if(array[i] != objList.get(i)) return false;
+        if (size != objList.size()) {
+            return false;
+        }
+        for (int i = 0; i < size; i++) {
+            if (array[i] != objList.get(i)) {
+                return false;
+            }
+        }
         return true;
     }
 

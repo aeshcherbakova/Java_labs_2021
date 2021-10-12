@@ -11,30 +11,29 @@ public class MyMapTest {
 
     private MyMap init() {
         MyMap map = new MyMap();
-        for(int i = 0; i < keys.length; i++)
+        for(int i = 0; i < keys.length; i++) {
             map.put(keys[i], values[i]);
+        }
         return map;
     }
 
     @Test
     public void put() {
         MyMap map = init();
-
         map.put("hello", "changed");
         map.put(true, true);
         map.put(null, "not null");
         Object[] changedValues = { "changed", -42.5, "8", 0, -10.0, 1234, true };
-
-        for(int i = 0; i < keys.length; i++)
-            assertEquals(changedValues[i], map.get(keys[i]));
+        assertEquals(new MyList(changedValues), map.getValues());
     }
 
     @Test
     public void get() {
         MyMap map = init();
 
-        for(int i = 0; i < keys.length; i++)
+        for(int i = 0; i < keys.length; i++) {
             assertEquals(values[i], map.get(keys[i]));
+        }
 
         assertNull(map.get("Hello"));
         assertNull(map.get(new MyMap()));
@@ -62,8 +61,9 @@ public class MyMapTest {
         Object[] newValues = { 5,       -42.5,     0, 1234, false };
 
         assertEquals(newKeys.length, map.size());
-        for(int i = 0; i < newKeys.length; i++)
+        for(int i = 0; i < newKeys.length; i++) {
             assertEquals(newValues[i], map.get(newKeys[i]));
+        }
     }
 
     @Test
@@ -104,8 +104,9 @@ public class MyMapTest {
     public void getEntries() {
         MyMap map = init();
         MyList expected = new MyList();
-        for(int i = 0; i < keys.length; i++)
+        for(int i = 0; i < keys.length; i++) {
             expected.add(new Pair(keys[i], values[i]));
+        }
         assertEquals(expected, map.getEntries());
 
     }

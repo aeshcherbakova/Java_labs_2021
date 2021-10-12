@@ -11,11 +11,8 @@ public class MyListTest {
         a.add(-42);
         a.add(null);
         a.add(0);
-        int[] expected = {1337, -42, 0};
-        int[] actual = new int[a.size()];
-        for(int i = 0; i < a.size(); i++)
-            actual[i] = (int)(a.get(i));
-        assertArrayEquals(actual, expected);
+        Object[] expected = {1337, -42, 0};
+        assertEquals(new MyList(expected), a);
     }
 
     @org.junit.Test
@@ -29,11 +26,8 @@ public class MyListTest {
         a.add(0, 1);
         a.add(8709, 3);
         a.add(-9, 2);
-        int[] expected = {-98, 0, -9, 1337, 8709, 42}; // дважды сработает ресайз
-        int[] actual = new int[a.size()];
-        for(int i = 0; i < a.size(); i++)
-            actual[i] = (int)(a.get(i));
-        assertArrayEquals(actual, expected);
+        Object[] expected = {-98, 0, -9, 1337, 8709, 42}; // дважды сработает ресайз
+        assertEquals(new MyList(expected), a);
     }
 
     @org.junit.Test
@@ -89,10 +83,7 @@ public class MyListTest {
         assertEquals(true, a.set(false, 5));
 
         Object[] expected = {"hello", 1337, "world", -0.234, 'q', false}; // дважды сработает ресайз
-        Object[] actual = new Object[a.size()];
-        for(int i = 0; i < a.size(); i++)
-            actual[i] = a.get(i);
-        assertArrayEquals(actual, expected);
+        assertEquals(new MyList(expected), a);
     }
 
     @org.junit.Test
