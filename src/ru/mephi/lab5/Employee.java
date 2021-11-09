@@ -1,4 +1,5 @@
 package ru.mephi.lab5;
+
 import java.util.ArrayList;
 
 public class Employee {
@@ -6,8 +7,8 @@ public class Employee {
     private String givenName;
     private String surName;
     private int age;
-    private GENDER gender;
-    private ROLE role;
+    private Gender gender;
+    private Role role;
     private String dept;
     private String email;
     private String phone;
@@ -37,14 +38,11 @@ public class Employee {
 
     @Override
     public String toString() {
-        // it could be done just by concatenating strings, but this is the example of using Builder pattern in StringBuilder class
-        StringBuilder builder = new StringBuilder();
-        builder.append("Employee [name=").append(givenName).append(", surname=").append(surName).append(", age=").append(age)
-                .append(", gender=").append(gender.getGender()).append(", role=").append(role.getRole())
-                .append(", dept=").append(dept).append(", email").append(email).append(", phone=").append(phone)
-                .append(", address=").append(address).append(", city=").append(city).append(", state=").append(state)
-                .append(", code=").append(code).append("]");
-        return builder.toString();
+        return "Employee [name=" + givenName + ", surname=" + surName + ", age=" + age +
+                ", gender=" + gender.getGender() + ", role=" + role.getRole() +
+                ", dept=" + dept + ", email" + email + ", phone=" + phone +
+                ", address=" + address + ", city=" + city + ", state=" + state +
+                ", code=" + code + "]";
     }
 
 
@@ -56,8 +54,8 @@ public class Employee {
         private String givenName;
         private String surName;
         private int age;
-        private GENDER gender;
-        private ROLE role;
+        private Gender gender;
+        private Role role;
         private String dept;
         private String email;
         private String phone;
@@ -72,10 +70,9 @@ public class Employee {
 
         public Employee build() {
             Employee employee = null;
-            if(checkIsCorrect()) {
+            if (checkIsCorrect()) {
                 employee = new Employee(this);
-            }
-            else {
+            } else {
                 System.out.println("Employee profile is wrong. Not created.");
             }
             return employee;
@@ -104,12 +101,12 @@ public class Employee {
             return this;
         }
 
-        public EmployeeBuilder gender(GENDER _gender) {
+        public EmployeeBuilder gender(Gender _gender) {
             gender = _gender;
             return this;
         }
 
-        public EmployeeBuilder role(ROLE _role) {
+        public EmployeeBuilder role(Role _role) {
             role = _role;
             return this;
         }
@@ -158,8 +155,8 @@ public class Employee {
                         givenName("Alexander").
                         surName("Chernov").
                         age(40).
-                        gender(GENDER.MALE).
-                        role(ROLE.STAFF).
+                        gender(Gender.MALE).
+                        role(Role.STAFF).
                         dept("analysis").
                         email("alex@chernov.com").
                         phone("71234567890").
@@ -168,14 +165,14 @@ public class Employee {
                         state("Moscow state").
                         code("777").
                         build()
-                );
+        );
         list.add(
                 new EmployeeBuilder().
                         givenName("Ivan").
                         surName("Belov").
                         age(25).
-                        gender(GENDER.MALE).
-                        role(ROLE.STAFF).
+                        gender(Gender.MALE).
+                        role(Role.STAFF).
                         dept("development").
                         email("ivan@belov.com").
                         phone("73216547890").
@@ -190,8 +187,8 @@ public class Employee {
                         givenName("Aleksey").
                         surName("Krasnov").
                         age(30).
-                        gender(GENDER.MALE).
-                        role(ROLE.EXECUTIVE).
+                        gender(Gender.MALE).
+                        role(Role.EXECUTIVE).
                         dept("development").
                         email("aleksey@krasnov.com").
                         phone("71234567890").
@@ -206,8 +203,8 @@ public class Employee {
                         givenName("Oleg").
                         surName("Zelenov").
                         age(28).
-                        gender(GENDER.MALE).
-                        role(ROLE.MANAGER).
+                        gender(Gender.MALE).
+                        role(Role.MANAGER).
                         dept("management").
                         email("oleg@zelenov.com").
                         phone("71234567890").
@@ -222,8 +219,8 @@ public class Employee {
                         givenName("Anna").
                         surName("Ivanove").
                         age(37).
-                        gender(GENDER.FEMALE).
-                        role(ROLE.MANAGER).
+                        gender(Gender.FEMALE).
+                        role(Role.MANAGER).
                         dept("management").
                         email("anna@ivanova.com").
                         phone("71234567890").
@@ -238,8 +235,8 @@ public class Employee {
                         givenName("Yana").
                         surName("Belova").
                         age(29).
-                        gender(GENDER.FEMALE).
-                        role(ROLE.EXECUTIVE).
+                        gender(Gender.FEMALE).
+                        role(Role.EXECUTIVE).
                         dept("development").
                         email("yana@belova.com").
                         phone("71234567890").
@@ -254,8 +251,8 @@ public class Employee {
                         givenName("Pavel").
                         surName("Petrov").
                         age(43).
-                        gender(GENDER.MALE).
-                        role(ROLE.EXECUTIVE).
+                        gender(Gender.MALE).
+                        role(Role.EXECUTIVE).
                         dept("analysis").
                         email("pavel@petrov.com").
                         phone("71234567890").
@@ -267,8 +264,6 @@ public class Employee {
         );
         return list;
     }
-
-
 
 
     public String getGivenName() {
@@ -295,19 +290,19 @@ public class Employee {
         this.age = age;
     }
 
-    public GENDER getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(GENDER gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
-    public ROLE getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(ROLE role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

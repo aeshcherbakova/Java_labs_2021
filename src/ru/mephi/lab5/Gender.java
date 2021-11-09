@@ -1,12 +1,12 @@
 package ru.mephi.lab5;
 
-public enum GENDER {
+public enum Gender {
     MALE("male"),
     FEMALE("female");
 
     private final String gender;
 
-    GENDER(String _gender) {
+    Gender(String _gender) {
         gender = _gender;
     }
 
