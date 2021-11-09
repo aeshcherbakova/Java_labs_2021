@@ -15,12 +15,4 @@ public class Accountant {
         System.out.println(log);
     }
 
-    /* TODO: testing functions:
-    1. pay premium to all female employees
-    2. pay salary to all employees from certain dept
-    3. pay premium to all employees older 30 years from certain dept
-    4. pay salary to all managers
-    5. pay premium to all staff
-     */
-
 }

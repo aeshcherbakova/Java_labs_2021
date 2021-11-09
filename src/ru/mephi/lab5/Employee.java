@@ -1,5 +1,5 @@
 package ru.mephi.lab5;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Employee {
 
@@ -48,10 +48,10 @@ public class Employee {
     }
 
 
-    // ******* BUILDER CLASS *******
+    // ******* static BUILDER CLASS *******
 
 
-    public class EmployeeBuilder {
+    public static class EmployeeBuilder {
 
         private String givenName;
         private String surName;
@@ -83,8 +83,8 @@ public class Employee {
 
         public boolean checkIsCorrect() {
             return (givenName != null && !givenName.trim().isEmpty() && surName != null && !surName.trim().isEmpty() &&
-                    age > 0 && dept != null && !dept.trim().isEmpty() && email != null && email.matches("^(.+)@( S+)") &&
-                    phone != null && !phone.matches("^[0-9\\-+]{9,15}") && address != null && !address.trim().isEmpty() &&
+                    age > 0 && dept != null && !dept.trim().isEmpty() && email != null && email.matches("^(.+)@(\\S+)") &&
+                    phone != null && phone.matches("((7|\\+7|8)([0-9]){10})") && address != null && !address.trim().isEmpty() &&
                     city != null && !city.trim().isEmpty() && state != null && !state.trim().isEmpty() && code != null && !code.trim().isEmpty()
             );
         }
@@ -151,9 +151,121 @@ public class Employee {
 
     }
 
-    public static List<Employee> createShortList() {
-        return null;
-        // TODO: create 7 different employees for future testing
+    public static ArrayList<Employee> createShortList() {
+        ArrayList<Employee> list = new ArrayList<>();
+        list.add(
+                new EmployeeBuilder().
+                        givenName("Alexander").
+                        surName("Chernov").
+                        age(40).
+                        gender(GENDER.MALE).
+                        role(ROLE.STAFF).
+                        dept("analysis").
+                        email("alex@chernov.com").
+                        phone("71234567890").
+                        address("Tsvetnoy boulevard, 5").
+                        city("Moscow").
+                        state("Moscow state").
+                        code("777").
+                        build()
+                );
+        list.add(
+                new EmployeeBuilder().
+                        givenName("Ivan").
+                        surName("Belov").
+                        age(25).
+                        gender(GENDER.MALE).
+                        role(ROLE.STAFF).
+                        dept("development").
+                        email("ivan@belov.com").
+                        phone("73216547890").
+                        address("Sovetskaya, 15").
+                        city("Moscow").
+                        state("Moscow state").
+                        code("777").
+                        build()
+        );
+        list.add(
+                new EmployeeBuilder().
+                        givenName("Aleksey").
+                        surName("Krasnov").
+                        age(30).
+                        gender(GENDER.MALE).
+                        role(ROLE.EXECUTIVE).
+                        dept("development").
+                        email("aleksey@krasnov.com").
+                        phone("71234567890").
+                        address("Sovetskaya, 1").
+                        city("Moscow").
+                        state("Moscow state").
+                        code("777").
+                        build()
+        );
+        list.add(
+                new EmployeeBuilder().
+                        givenName("Oleg").
+                        surName("Zelenov").
+                        age(28).
+                        gender(GENDER.MALE).
+                        role(ROLE.MANAGER).
+                        dept("management").
+                        email("oleg@zelenov.com").
+                        phone("71234567890").
+                        address("Sovetskaya, 2").
+                        city("Moscow").
+                        state("Moscow state").
+                        code("777").
+                        build()
+        );
+        list.add(
+                new EmployeeBuilder().
+                        givenName("Anna").
+                        surName("Ivanove").
+                        age(37).
+                        gender(GENDER.FEMALE).
+                        role(ROLE.MANAGER).
+                        dept("management").
+                        email("anna@ivanova.com").
+                        phone("71234567890").
+                        address("Tsvetnoy boulevard, 25").
+                        city("Moscow").
+                        state("Moscow state").
+                        code("777").
+                        build()
+        );
+        list.add(
+                new EmployeeBuilder().
+                        givenName("Yana").
+                        surName("Belova").
+                        age(29).
+                        gender(GENDER.FEMALE).
+                        role(ROLE.EXECUTIVE).
+                        dept("development").
+                        email("yana@belova.com").
+                        phone("71234567890").
+                        address("Tsvetnoy boulevard, 5").
+                        city("Moscow").
+                        state("Moscow state").
+                        code("777").
+                        build()
+        );
+        list.add(
+                new EmployeeBuilder().
+                        givenName("Pavel").
+                        surName("Petrov").
+                        age(43).
+                        gender(GENDER.MALE).
+                        role(ROLE.EXECUTIVE).
+                        dept("analysis").
+                        email("pavel@petrov.com").
+                        phone("71234567890").
+                        address("Tsvetnoy boulevard, 15").
+                        city("Moscow").
+                        state("Moscow state").
+                        code("777").
+                        build()
+        );
+        return list;
     }
 
 
