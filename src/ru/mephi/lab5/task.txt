@@ -33,6 +33,3 @@ public void payPremium(Employee employee); Выплату премии реал�
 2. findFirst и lazy операции
 3. max, min
 4. average, sum
-
-
-

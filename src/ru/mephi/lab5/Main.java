@@ -34,7 +34,7 @@ public class Main {
             System.out.println(menu);
             System.out.println("Input option:");
             int input = sc.nextInt();
-            System.out.println("\n===========\n");
+            System.out.println("\n===========");
             switch (input) {
                 case 0 -> loop = false;
                 case 1 -> employees.stream()
@@ -55,7 +55,7 @@ public class Main {
                 case 6 -> printEmployees(employees);
                 default -> System.out.println("Incorrect option! Try again.");
             }
-            System.out.println("\n===========\n");
+            System.out.println("===========\n");
         }
     }
 }

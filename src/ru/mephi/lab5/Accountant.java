@@ -5,13 +5,18 @@ public class Accountant {
     public void paySalary(Employee employee) {
         System.out.println(
                 "Employee " + employee.getFullName() +
-                        " paid " + employee.getRole().getSalary() + " salary");
+                        " paid " + employee.getSalary() + " salary");
     }
 
     public void payPremium(Employee employee) {
-        Role role = employee.getRole();
-        double premium = role.getSalary() * role.getPremiumPercent();
-        System.out.println("Employee " + employee.getFullName() + " paid " + premium + " premium");
+        System.out.println("Employee " + employee.getFullName() + " paid "
+                + employee.getSalary() * employee.getRole().getPremiumPercent() + " premium");
+    }
+
+    public void promote(Employee employee, int sum) {
+        int newSalary = employee.getSalary() + sum;
+        employee.setSalary(newSalary);
+        System.out.println("Employee " + employee.getFullName() + " new salary is " + newSalary);
     }
 
 }

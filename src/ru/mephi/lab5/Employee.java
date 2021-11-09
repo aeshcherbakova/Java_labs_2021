@@ -7,6 +7,7 @@ public class Employee {
     private String givenName;
     private String surName;
     private int age;
+    private int salary;
     private Gender gender;
     private Role role;
     private String dept;
@@ -22,6 +23,7 @@ public class Employee {
         givenName = builder.givenName;
         surName = builder.surName;
         age = builder.age;
+        salary = builder.salary;
         gender = builder.gender;
         role = builder.role;
         dept = builder.dept;
@@ -39,7 +41,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee [name=" + givenName + ", surname=" + surName + ", age=" + age +
-                ", gender=" + gender.getGender() + ", role=" + role.getRole() +
+                ", salary=" + salary + ", gender=" + gender.getGender() + ", role=" + role.getRole() +
                 ", dept=" + dept + ", email" + email + ", phone=" + phone +
                 ", address=" + address + ", city=" + city + ", state=" + state +
                 ", code=" + code + "]";
@@ -47,22 +49,21 @@ public class Employee {
 
 
     // ******* static BUILDER CLASS *******
-
-
     public static class EmployeeBuilder {
 
         private String givenName;
         private String surName;
         private int age;
+        private int salary;
         private Gender gender;
         private Role role;
         private String dept;
         private String email;
         private String phone;
-        private String address;
-        private String city;
-        private String state;
-        private String code;
+        private String address = "";
+        private String city = "";
+        private String state = "";
+        private String code = "";
 
         public EmployeeBuilder() {
             super();
@@ -81,8 +82,8 @@ public class Employee {
         public boolean checkIsCorrect() {
             return (givenName != null && !givenName.trim().isEmpty() && surName != null && !surName.trim().isEmpty() &&
                     age > 0 && dept != null && !dept.trim().isEmpty() && email != null && email.matches("^(.+)@(\\S+)") &&
-                    phone != null && phone.matches("((7|\\+7|8)([0-9]){10})") && address != null && !address.trim().isEmpty() &&
-                    city != null && !city.trim().isEmpty() && state != null && !state.trim().isEmpty() && code != null && !code.trim().isEmpty()
+                    phone != null && phone.matches("((7|\\+7|8)([0-9]){10})") &&
+                    address != null  && city != null && state != null && code != null && salary > 0
             );
         }
 
@@ -98,6 +99,11 @@ public class Employee {
 
         public EmployeeBuilder age(int _age) {
             age = _age;
+            return this;
+        }
+
+        public EmployeeBuilder salary(int _salary) {
+            salary = _salary;
             return this;
         }
 
@@ -155,6 +161,7 @@ public class Employee {
                         givenName("Alexander").
                         surName("Chernov").
                         age(40).
+                        salary(40000).
                         gender(Gender.MALE).
                         role(Role.STAFF).
                         dept("analysis").
@@ -171,6 +178,7 @@ public class Employee {
                         givenName("Ivan").
                         surName("Belov").
                         age(25).
+                        salary(43000).
                         gender(Gender.MALE).
                         role(Role.STAFF).
                         dept("development").
@@ -187,6 +195,7 @@ public class Employee {
                         givenName("Aleksey").
                         surName("Krasnov").
                         age(30).
+                        salary(60000).
                         gender(Gender.MALE).
                         role(Role.EXECUTIVE).
                         dept("development").
@@ -203,6 +212,7 @@ public class Employee {
                         givenName("Oleg").
                         surName("Zelenov").
                         age(28).
+                        salary(70000).
                         gender(Gender.MALE).
                         role(Role.MANAGER).
                         dept("management").
@@ -217,8 +227,9 @@ public class Employee {
         list.add(
                 new EmployeeBuilder().
                         givenName("Anna").
-                        surName("Ivanove").
+                        surName("Ivanova").
                         age(37).
+                        salary(80000).
                         gender(Gender.FEMALE).
                         role(Role.MANAGER).
                         dept("management").
@@ -235,6 +246,7 @@ public class Employee {
                         givenName("Yana").
                         surName("Belova").
                         age(29).
+                        salary(90000).
                         gender(Gender.FEMALE).
                         role(Role.EXECUTIVE).
                         dept("development").
@@ -251,6 +263,7 @@ public class Employee {
                         givenName("Pavel").
                         surName("Petrov").
                         age(43).
+                        salary(100000).
                         gender(Gender.MALE).
                         role(Role.EXECUTIVE).
                         dept("analysis").
@@ -288,6 +301,14 @@ public class Employee {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
 
     public Gender getGender() {
