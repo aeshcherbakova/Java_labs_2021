@@ -41,7 +41,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee [name=" + givenName + ", surname=" + surName + ", age=" + age +
-                ", salary=" + salary + ", gender=" + gender.getGender() + ", role=" + role.getRole() +
+                ", salary=" + salary + ", gender=" + gender.toString() + ", role=" + role.toString() +
                 ", dept=" + dept + ", email" + email + ", phone=" + phone +
                 ", address=" + address + ", city=" + city + ", state=" + state +
                 ", code=" + code + "]";

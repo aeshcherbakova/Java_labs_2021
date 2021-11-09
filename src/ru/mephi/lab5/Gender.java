@@ -1,16 +1,13 @@
 package ru.mephi.lab5;
 
+import java.util.Locale;
+
 public enum Gender {
-    MALE("male"),
-    FEMALE("female");
+    MALE,
+    FEMALE;
 
-    private final String gender;
-
-    Gender(String _gender) {
-        gender = _gender;
-    }
-
-    public String getGender() {
-        return gender;
+    @Override
+    public String toString() {
+        return name().toLowerCase(Locale.ROOT);
     }
 }

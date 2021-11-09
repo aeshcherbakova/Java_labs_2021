@@ -1,23 +1,24 @@
 package ru.mephi.lab5;
 
-public enum Role {
-    STAFF("Staff", 0.1),
-    MANAGER("Manager", 0.2),
-    EXECUTIVE("Executive", 0.3);
+import java.util.Locale;
 
-    private final String role;
+public enum Role {
+    STAFF(0.1),
+    MANAGER(0.2),
+    EXECUTIVE(0.3);
+
     private final double premiumPercent;
 
-    Role(String _role, double _percent) {
-        role = _role;
+    Role(double _percent) {
         premiumPercent = _percent;
-    }
-
-    public String getRole() {
-        return role;
     }
 
     public double getPremiumPercent() {
         return premiumPercent;
+    }
+
+    @Override
+    public String toString() {
+        return name().toLowerCase(Locale.ROOT);
     }
 }

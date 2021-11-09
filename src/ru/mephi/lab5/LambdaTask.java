@@ -47,11 +47,9 @@ public class LambdaTask {
     // Add 3k to employees with salary smaller then 50000
     public static void biPredicateExample() {
         BiPredicate<Employee, Integer> isSalarySmaller = (employee, val) -> employee.getSalary() < val;
-        employees.forEach(e -> {
-            if (isSalarySmaller.test(e, 50000)) {
-                accountant.promote(e, 3000);
-            }
-        });
+        employees.stream()
+                .filter(e -> isSalarySmaller.test(e, 50000))
+                .forEach(e -> accountant.promote(e, 3000));
     }
 
     public static void main(String[] args) {
